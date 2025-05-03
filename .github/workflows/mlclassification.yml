@@ -33,6 +33,8 @@ jobs:
     - name: Install dependencies
       run: |
         pip install bentoml
+        pip install scikit-learn
+        pip install pandas
 
     - name: Test BentoML Model
       run: python BentoML/tests/test_model.py

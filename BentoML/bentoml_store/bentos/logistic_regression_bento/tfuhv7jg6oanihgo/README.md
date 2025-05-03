@@ -1,0 +1,1 @@
+BentoML deployment for Logistic Regression service

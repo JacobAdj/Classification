@@ -1,0 +1,17 @@
+name: iris3
+version: hctunczg4soumhgo
+module: bentoml.sklearn
+labels: {}
+options: {}
+metadata: {}
+context:
+  framework_name: sklearn
+  framework_versions:
+    scikit-learn: 1.6.1
+  bentoml_version: 1.4.12
+  python_version: 3.11.9
+signatures:
+  predict:
+    batchable: false
+api_version: v1
+creation_time: '2025-05-01T23:30:09.340100+00:00'

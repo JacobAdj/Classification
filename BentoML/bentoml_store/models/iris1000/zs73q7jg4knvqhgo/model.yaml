@@ -1,0 +1,17 @@
+name: iris1000
+version: zs73q7jg4knvqhgo
+module: bentoml.sklearn
+labels: {}
+options: {}
+metadata: {}
+context:
+  framework_name: sklearn
+  framework_versions:
+    scikit-learn: 1.6.1
+  bentoml_version: 1.4.12
+  python_version: 3.11.9
+signatures:
+  predict:
+    batchable: false
+api_version: v1
+creation_time: '2025-05-01T23:19:58.808645+00:00'

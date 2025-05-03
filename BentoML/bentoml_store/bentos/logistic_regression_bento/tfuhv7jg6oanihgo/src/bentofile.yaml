@@ -1,0 +1,30 @@
+service: service:LogisticRegressionService  # Specifies the service
+name: logistic_regression_bento  # Bento name
+# version: "1.0.0"  # Versioning
+
+description: "BentoML deployment for Logistic Regression service"
+
+labels:  # Optional metadata
+  owner: "Jacob"
+  project: "Iris Model Deployment"
+
+python:
+  # requirements_txt: requirements.txt  # Add dependencies here
+  packages:
+    - pandas
+    - scikit-learn
+    - bentoml
+    - torch
+    - transformers
+
+# resources:
+#   cpu: "2"  # Allocate CPU resources
+
+# image:
+#   python_version: "3.11"
+#   packages:
+#     - torch
+#     - transformers
+
+# traffic:
+#   timeout: 30

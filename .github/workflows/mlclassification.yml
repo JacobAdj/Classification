@@ -36,6 +36,9 @@ jobs:
         pip install scikit-learn
         pip install pandas
 
+    - name: Set BentoML Store Path
+      run: echo "BENTOML_HOME=${{ github.workspace }}/Classification/BentoML/bentoml_store" >> $GITHUB_ENV
+
     - name: Test BentoML Model
       run: python BentoML/tests/test_model.py
 

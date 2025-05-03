@@ -35,7 +35,7 @@ jobs:
         pip install bentoml
 
     - name: Test BentoML Model
-      run: python tests/test_model.py
+      run: python BentoML/tests/test_model.py
 
     - name: Deploy BentoML Service
-      run: bentoml serve service.py
+      run: bentoml serve BentoML/service.py

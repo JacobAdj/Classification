@@ -14,4 +14,4 @@ RUN pip install -r requirements.txt
 EXPOSE 3000
 
 # Run service (Modify command based on your project)
-CMD ["python", "service.py"]
+CMD ["bentoml" , "serve" , "service.py"]

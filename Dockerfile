@@ -1,6 +1,10 @@
 # Use the official Python image
 FROM python:3.11
 
+
+# Set BentoML model store environment variable
+ENV BENTOML_BENTO_STORE="/app/bentoml_store"
+
 # Set working directory
 WORKDIR /app
 

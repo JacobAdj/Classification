@@ -64,10 +64,11 @@ jobs:
     - name: Run Docker Container
       run: |
         docker run -d --name logreg_container -p 8080:3000 logistic_regression_bento:latest
+        docker ps
 
     - name: Check BentoML API Inside Container
       run: |
-        docker exec logreg_container curl curl -X POST -H "Content-Type: application/json" -d '{"input_data":"vraag"}' http://localhost:3000/health || echo "BentoML not responding"
+        docker exec logreg_container curl -X POST -H "Content-Type: application/json" -d '{"input_data":"vraag"}' http://localhost:3000/health || echo "BentoML not responding"
         
     - name: Verify BentoML Container
       run: |

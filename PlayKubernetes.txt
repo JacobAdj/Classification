@@ -1,0 +1,130 @@
+
+
+
+   WARNING!!!!
+
+ This is a sandbox environment. Using personal credentials
+ is HIGHLY! discouraged. Any consequences of doing so, are
+ completely the user's responsibilites.
+
+ You can bootstrap a cluster as follows:
+
+ 1. Initializes cluster master node:
+
+   WARNING!!!!
+
+ This is a sandbox environment. Using personal credentials
+ is HIGHLY! discouraged. Any consequences of doing so, are
+ completely the user's responsibilites.
+
+ You can bootstrap a cluster as follows:
+
+ 1. Initializes cluster master node:
+
+ kubeadm init --apiserver-advertise-address $(hostname -i) --pod-network-cidr 10.5.0.0/16
+
+
+ 2. Initialize cluster networking:
+
+ kubectl apply -f https://raw.githubusercontent.com/cloudnativelabs/kube-router/master/daemonset/kubeadm-kuberouter.yaml
+
+
+ 3. (Optional) Create an nginx deployment:
+
+ kubectl apply -f https://raw.githubusercontent.com/kubernetes/website/master/content/en/examples/application/nginx-app.yaml
+
+
+                          The PWK team.
+
+
+
+ 2. Initialize cluster networking:
+
+ kubectl apply -f https://raw.githubusercontent.com/cloudnativelabs/kube-router/master/daemonset/kubeadm-kuberouter.yaml
+
+
+ 3. (Optional) Create an nginx deployment:
+
+ kubectl apply -f https://raw.githubusercontent.com/kubernetes/website/master/content/en/examples/application/nginx-app.yaml
+
+
+                          The PWK team.
+
+
+
+kubectl get namespaces
+
+
+kubectl get pods -n default
+
+kubectl apply -f deploy/webv/webv.yaml
+
+
+mkdir -p $HOME/.kube
+
+kubectl config view --raw > $HOME/.kube/config
+
+export KUBECONFIG=$HOME/.kube/config
+
+
+kubectl config set-cluster codespaces-cluster --server=https://bookish-disco-grg5rp674492pg7x-6443.app.github.dev/:6443
+
+
+ls -al $HOME/.kube
+
+cat $HOME/.kube/config
+
+
+kubectl config set-context codespaces-context --cluster=codespaces-cluster --user=default
+
+kubectl config use-context codespaces-context
+
+kubectl config get-contexts
+
+kubectl config current-context    :      k3d-k3s-default
+
+
+kubectl cluster-info
+
+kubectl get nodes
+
+
+kubectl get secret -n kube-system | grep default-token
+
+kubectl get secret <your-secret-name> -n kube-system -o jsonpath='{.data.token}' | base64 --decode
+
+
+
+kubectl config set-credentials codespaces-user --username=<your-username> --password=<your-password>
+
+kubectl config set-context codespaces-context --cluster=codespaces-cluster --user=codespaces-user
+
+kubectl config use-context codespaces-context
+
+
+gh codespace stop -c bookish-disco
+
+gh codespace start -c <your-codespace-name>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

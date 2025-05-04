@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
       - name: bentoml-container
-        image: your-docker-image  # Replace with your BentoML container image
+        image: logistic_regression_bento:latest  # Replace with your BentoML container image
         ports:
         - containerPort: 3000

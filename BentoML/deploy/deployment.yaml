@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bentoml-service
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: bentoml-service
+  template:
+    metadata:
+      labels:
+        app: bentoml-service
+    spec:
+      containers:
+      - name: bentoml-container
+        image: your-docker-image  # Replace with your BentoML container image
+        ports:
+        - containerPort: 3000

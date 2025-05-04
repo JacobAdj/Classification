@@ -18,7 +18,7 @@ jobs:
       - run: echo "🍏 This job's status is ${{ job.status }}."
 
   
-  Test_Deploy_ML:
+  Test_ML:
     runs-on: ubuntu-latest
 
     steps:
@@ -42,5 +42,45 @@ jobs:
     - name: Test BentoML Model
       run: python BentoML/tests/test_model.py
 
+
+  Build_ML:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v3
+
+    - name: Build Docker Image
+      run: |
+        docker build -t bento-service:latest .
+
+
+  Deploy_ML:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Set Up Kubernetes CLI
+      run: |
+        curl -LO "https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl"
+        chmod +x kubectl
+        sudo mv kubectl /usr/local/bin/
+
+    - name: Authenticate with Play with K8s
+      env:
+        K8S_API_SERVER: ${{ secrets.K8S_API_SERVER }}
+        K8S_TOKEN: ${{ secrets.K8S_TOKEN }}
+      run: |
+        kubectl config set-cluster play-with-k8s --server=$K8S_API_SERVER --insecure-skip-tls-verify=true
+        kubectl config set-credentials admin --token=$K8S_TOKEN
+        kubectl config set-context play-with-k8s --cluster=play-with-k8s --user=admin
+        kubectl config use-context play-with-k8s
+
     - name: Deploy BentoML Service
-      run: bentoml serve  logistic_regression_bento:latest
+      run: |
+        kubectl apply -f deployment.yaml

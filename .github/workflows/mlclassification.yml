@@ -65,6 +65,7 @@ jobs:
       run: |
         docker run --name logreg_container -p 3000:3000 logistic_regression_bento:latest
         docker ps -a
+        docker logs logreg_container
 
     - name: Check BentoML API Inside Container
       run: |

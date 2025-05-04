@@ -37,3 +37,8 @@ class LogisticRegressionService:
 
         return {"prediction": int(prediction[0])}
     
+
+    @bentoml.api
+    def health(self, input_data: dict) -> str:
+    
+        return input_data.input_data

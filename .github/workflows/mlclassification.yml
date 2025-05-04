@@ -2,7 +2,7 @@ name: ML Classification Workflow
 run-name: ${{ github.actor }} workflow for ML classification 🚀
 env:
   KUBE_CLUSTER: k3d-k3s-default
-  KUBE_SERVER: https://your-cluster-api-server:6443
+  KUBE_SERVER: https://10.0.2.21:6443
 
 on: [push]
 jobs:

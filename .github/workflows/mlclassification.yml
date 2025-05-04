@@ -65,10 +65,14 @@ jobs:
       run: |
         docker run -d --name logreg_container -p 8080:3000 logistic_regression_bento:latest
 
+    - name: Check BentoML API Inside Container
+        run: |
+          docker exec -it logreg_container curl http://localhost:3000/predict || echo "BentoML not responding"
+        
     - name: Verify BentoML Container
       run: |
         docker ps
-        curl http://localhost:8080/api || echo "BentoML is not responding"
+        curl http://localhost:8080/predict || echo "BentoML container is not responding"
 
 
   Deploy_ML:

@@ -73,8 +73,6 @@ jobs:
     
     - name: Configure Kubernetes in Codespaces 
       run: |
-#        mkdir -p $HOME/.kube
-#        kubectl config view --raw > $HOME/.kube/config
         export KUBECONFIG=$HOME/.kube/config
 
     - name: Deploy BentoML Service

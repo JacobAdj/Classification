@@ -55,7 +55,7 @@ jobs:
 
     - name: Build Docker Image
       run: |
-        docker build -t bento-service:latest .
+        docker build -t logistic_regression_bento:latest .
 
 
   Deploy_ML:

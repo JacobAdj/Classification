@@ -81,4 +81,4 @@ jobs:
 
     - name: Deploy BentoML Service
       run: |
-        kubectl apply -f BentoML/deploy/deployment.yaml
+        kubectl apply -f BentoML/deploy/deployment.yaml --validate=false

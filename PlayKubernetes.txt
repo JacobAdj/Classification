@@ -67,7 +67,6 @@ kubectl config view --raw > $HOME/.kube/config
 export KUBECONFIG=$HOME/.kube/config
 
 
-kubectl config set-cluster codespaces-cluster --server=https://bookish-disco-grg5rp674492pg7x-6443.app.github.dev/:6443
 
 
 ls -al $HOME/.kube
@@ -89,6 +88,19 @@ kubectl cluster-info
 kubectl get nodes
 
 
+kubectl config get-clusters
+
+
+k3d cluster list
+
+
+hostname -I | awk '{print $1}'
+
+
+kubectl config set-cluster k3d-k3s-default --server=https://10.0.2.21:6443
+
+
+
 kubectl get secret -n kube-system | grep default-token
 
 kubectl get secret <your-secret-name> -n kube-system -o jsonpath='{.data.token}' | base64 --decode
@@ -102,7 +114,7 @@ kubectl config set-context codespaces-context --cluster=codespaces-cluster --use
 kubectl config use-context codespaces-context
 
 
-gh codespace stop -c bookish-disco
+
 
 gh codespace start -c <your-codespace-name>
 

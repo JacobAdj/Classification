@@ -71,10 +71,10 @@ jobs:
         chmod +x kubectl
         sudo mv kubectl /usr/local/bin/
     
-    - name: Authenticate with Kubernetes in Codespaces
+    - name: Kubernetes in Codespaces
       run: |
         mkdir -p $HOME/.kube
-        cp -i /workspaces/.codespaces/kube/config $HOME/.kube/config
+        kubectl config view --raw > $HOME/.kube/config
         export KUBECONFIG=$HOME/.kube/config
 
     - name: Deploy BentoML Service

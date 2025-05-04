@@ -70,16 +70,12 @@ jobs:
         curl -LO "https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl"
         chmod +x kubectl
         sudo mv kubectl /usr/local/bin/
-
-    - name: Authenticate with Play with K8s
-      env:
-        K8S_API_SERVER: ${{ secrets.K8S_API_SERVER }}
-        K8S_TOKEN: ${{ secrets.K8S_TOKEN }}
+    
+    - name: Authenticate with Kubernetes in Codespaces
       run: |
-        kubectl config set-cluster play-with-k8s --server=$K8S_API_SERVER --insecure-skip-tls-verify=true
-        kubectl config set-credentials admin --token=$K8S_TOKEN
-        kubectl config set-context play-with-k8s --cluster=play-with-k8s --user=admin
-        kubectl config use-context play-with-k8s
+        mkdir -p $HOME/.kube
+        cp -i /workspaces/.codespaces/kube/config $HOME/.kube/config
+        export KUBECONFIG=$HOME/.kube/config
 
     - name: Deploy BentoML Service
       run: |

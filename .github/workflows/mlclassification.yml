@@ -71,7 +71,7 @@ jobs:
         chmod +x kubectl
         sudo mv kubectl /usr/local/bin/
     
-    - name: Kubernetes in Codespaces
+    - name: Configure Kubernetes in Codespaces
       run: |
         mkdir -p $HOME/.kube
         kubectl config view --raw > $HOME/.kube/config
